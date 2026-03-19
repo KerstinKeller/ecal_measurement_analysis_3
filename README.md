@@ -67,3 +67,14 @@ For test-driven downstream work, synthetic builders and a minimal fake adapter a
 - `FakeMeasurementAdapter`
 
 These helpers provide deterministic stream/message fixtures without requiring real eCAL integration.
+
+### Canonical base table (Step 2.1)
+
+`measurement_inspector.model.base_table.build_base_table(records)` converts normalized records into the
+canonical **observed-message** dataframe:
+
+- one row per observed message (no synthetic missing-message rows)
+- one combined table across streams, keyed by `stream_id`
+- deterministic default order by `stream_id`, then receiver-time analysis order
+- raw normalized fields are preserved exactly (`stream_id`, `topic`, `send_ts`, `recv_ts`, `counter`, `size_bytes`)
+- derived/anomaly columns are provisioned as nullable placeholders for later modeling steps

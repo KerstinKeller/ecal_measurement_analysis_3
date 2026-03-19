@@ -130,7 +130,7 @@ Only one step should normally be `[-]` at a time.
 
 ## Phase 2 — Canonical base table
 
-### Step 2.1 — Build canonical base table from normalized records
+### Step 2.1 [x] — Build canonical base table from normalized records
 **Goal:** convert normalized records into the canonical observed-message base table.
 
 **Tests first**
