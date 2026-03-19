@@ -196,7 +196,7 @@ Only one step should normally be `[-]` at a time.
 
 ## Phase 3 — Counter logic and inferred loss
 
-### Step 3.1 — Implement counter delta and gap inference
+### Step 3.1 [x] — Implement counter delta and gap inference
 **Goal:** implement stream-local counter delta computation and inferred loss counts.
 
 **Tests first**
