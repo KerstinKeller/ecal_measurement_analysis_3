@@ -164,7 +164,7 @@ Only one step should normally be `[-]` at a time.
 
 ---
 
-### Step 2.2 — Compute basic timing-derived columns
+### Step 2.2 [x] — Compute basic timing-derived columns
 **Goal:** compute latency and timestamp-delta columns.
 
 **Tests first**
