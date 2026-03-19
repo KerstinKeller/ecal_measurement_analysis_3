@@ -92,3 +92,23 @@ stream-local timing diagnostics on the canonical table:
 - `is_recv_time_nonmonotonic`: `True` when `recv_dt_s < 0`, otherwise `False`, and null on first row per stream
 
 All first rows per stream keep null deltas/flags because no previous observation exists.
+
+### Counter-derived metrics and inferred loss (Step 3.1)
+
+`measurement_inspector.model.counter_logic.apply_counter_derived_metrics(base_table, config=None)`
+computes stream-local counter diagnostics on the canonical base table:
+
+- `counter_delta`: effective counter increment from previous observed row in the same stream
+- `lost_msgs`: inferred missing messages (`max(counter_delta - 1, 0)`) for forward motion
+- `is_gap`: `True` when `counter_delta > 1`
+- `is_counter_nonmonotonic`: `True` for duplicate (`delta == 0`) or backward (`delta < 0`) motion
+
+Wrap-aware behavior is controlled by `AnalysisConfig`:
+
+- modulus is `counter_modulus` when provided, otherwise `2 ** counter_bits`
+- when `counter_wrap=True`, negative deltas are normalized as wrap only for large
+  backward jumps (`abs(raw_delta) > modulus / 2`), preserving small backward jumps
+  as non-monotonic reorder/backward events
+- when `counter_wrap=False`, raw signed deltas are used directly
+
+The first row per stream keeps null values for all counter-derived fields.
