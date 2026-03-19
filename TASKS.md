@@ -103,7 +103,7 @@ Only one step should normally be `[-]` at a time.
 
 ---
 
-### Step 1.2 — Define adapter protocol and synthetic fixture helpers
+### Step 1.2 [x] — Define adapter protocol and synthetic fixture helpers
 **Goal:** define the measurement adapter contract and create synthetic record fixtures for tests.
 
 **Tests first**

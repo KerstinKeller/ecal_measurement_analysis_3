@@ -51,3 +51,19 @@ And optional field:
 - `topic`
 
 The model validates type/range requirements so downstream modeling code receives a stable contract, including integer-microsecond timestamps as produced by the measurement adapter.
+
+### Adapter protocol and synthetic fixtures (Step 1.2)
+
+`measurement_inspector.io.ecal_reader.MeasurementAdapter` defines the analysis-facing adapter contract:
+
+- `list_streams(measurement_path)` returns stream metadata as a dataframe
+- `iter_messages(measurement_path, stream_ids=None, topics=None)` yields `NormalizedRawRecord` rows
+
+For test-driven downstream work, synthetic builders and a minimal fake adapter are provided in
+`tests/synthetic_fixtures.py`:
+
+- `build_synthetic_record(...)`
+- `build_synthetic_stream(...)`
+- `FakeMeasurementAdapter`
+
+These helpers provide deterministic stream/message fixtures without requiring real eCAL integration.
