@@ -73,7 +73,7 @@ Only one step should normally be `[-]` at a time.
 
 ## Phase 1 — Core domain contracts
 
-### Step 1.1 — Define core config and record schemas
+### Step 1.1 [x] — Define core config and record schemas
 **Goal:** define the minimal typed contracts for config and normalized raw message records.
 
 **Tests first**

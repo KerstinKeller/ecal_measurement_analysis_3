@@ -7,7 +7,7 @@ ingest one measurement at a time from an eCAL HDF source
 
 normalize records into a canonical schema
 
-preserve both sender and receiver timestamps
+preserve both sender and receiver timestamps as integer microseconds
 
 compute message-level timing and counter-derived metrics
 
@@ -241,9 +241,9 @@ stream_id
 
 topic
 
-send_ts
+send_ts (int, microseconds)
 
-recv_ts
+recv_ts (int, microseconds)
 
 counter
 
@@ -379,7 +379,7 @@ This is especially important for debugging wrap/reorder behavior.
 
 Timestamp strategy
 
-Both timestamps are required.
+Both timestamps are required and must be integer microseconds.
 
 Default analysis axis
 
