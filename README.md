@@ -78,3 +78,17 @@ canonical **observed-message** dataframe:
 - deterministic default order by `stream_id`, then receiver-time analysis order
 - raw normalized fields are preserved exactly (`stream_id`, `topic`, `send_ts`, `recv_ts`, `counter`, `size_bytes`)
 - derived/anomaly columns are provisioned as nullable placeholders for later modeling steps
+
+
+### Timing-derived metrics (Step 2.2)
+
+`measurement_inspector.model.derived_metrics.apply_timing_derived_metrics(base_table)` computes
+stream-local timing diagnostics on the canonical table:
+
+- `latency_s = (recv_ts - send_ts) / 1_000_000`
+- `send_dt_s`: per-stream delta between consecutive `send_ts` values
+- `recv_dt_s`: per-stream delta between consecutive `recv_ts` values
+- `is_send_time_nonmonotonic`: `True` when `send_dt_s < 0`, otherwise `False`, and null on first row per stream
+- `is_recv_time_nonmonotonic`: `True` when `recv_dt_s < 0`, otherwise `False`, and null on first row per stream
+
+All first rows per stream keep null deltas/flags because no previous observation exists.
