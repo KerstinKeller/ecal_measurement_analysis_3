@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "measurement-inspector"
+version = "0.1.0"
+description = "Local measurement inspection app for eCAL HDF data"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Measurement Inspector Contributors" }]
+dependencies = [
+  "pandas>=2.0",
+  "numpy>=1.24",
+  "panel>=1.0",
+  "holoviews>=1.18",
+  "hvplot>=0.10",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.6",
+]
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+include = ["measurement_inspector*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

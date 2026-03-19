@@ -43,7 +43,7 @@ Only one step should normally be `[-]` at a time.
 
 ## Phase 0 — Repository foundation
 
-### Step 0.1 — Initialize repository structure and tooling
+### Step 0.1 [x] — Initialize repository structure and tooling
 **Goal:** create the initial project skeleton, packaging, test runner, lint/format tooling, and documentation scaffolding.
 
 **Tests first**
