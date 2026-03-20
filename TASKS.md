@@ -260,7 +260,7 @@ Only one step should normally be `[-]` at a time.
 
 ## Phase 4 — Expected period, rate, and throughput metrics
 
-### Step 4.1 — Implement send/receive rates and period errors
+### Step 4.1 [x] — Implement send/receive rates and period errors
 **Goal:** derive frequency and period error metrics from delta columns and config.
 
 **Tests first**

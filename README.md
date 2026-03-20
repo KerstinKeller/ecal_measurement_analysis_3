@@ -125,3 +125,19 @@ separate inferred loss-event table from the canonical observed-message base tabl
 
 This keeps **observed-message semantics** in the base table while representing inferred
 missing-message behavior in a dedicated event table.
+
+### Rate and period-error metrics (Step 4.1)
+
+`measurement_inspector.model.derived_metrics.apply_timing_derived_metrics(base_table, config=None)`
+also derives per-row frequency and period-error diagnostics:
+
+- `send_freq_hz = 1 / send_dt_s` for positive `send_dt_s`, else null
+- `recv_freq_hz = 1 / recv_dt_s` for positive `recv_dt_s`, else null
+- `send_period_error_s = send_dt_s - expected_period_s`
+- `recv_period_error_s = recv_dt_s - expected_period_s`
+
+Expected period resolution is explicit and stable:
+
+1. if `AnalysisConfig.expected_freq_hz` is set, use `1 / expected_freq_hz`
+2. else if `AnalysisConfig.expected_period_s` is set, use that value
+3. else keep period-error columns null
