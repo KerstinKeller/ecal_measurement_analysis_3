@@ -233,7 +233,7 @@ Only one step should normally be `[-]` at a time.
 
 ---
 
-### Step 3.2 — Build loss-event table
+### Step 3.2 [x] — Build loss-event table
 **Goal:** build a separate inferred loss-event table from the base table.
 
 **Tests first**

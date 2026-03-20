@@ -112,3 +112,16 @@ Wrap-aware behavior is controlled by `AnalysisConfig`:
 - when `counter_wrap=False`, raw signed deltas are used directly
 
 The first row per stream keeps null values for all counter-derived fields.
+
+### Loss-event table (Step 3.2)
+
+`measurement_inspector.model.summaries.build_loss_event_table(base_table)` extracts a
+separate inferred loss-event table from the canonical observed-message base table:
+
+- emits one row per inferred counter gap (`is_gap == True`)
+- carries previous/current sender and receiver timestamps and counters
+- includes derived gap values (`recv_gap_s`, `send_gap_s`)
+- includes `latency_before_s` and `latency_after_s` for before/after event inspection
+
+This keeps **observed-message semantics** in the base table while representing inferred
+missing-message behavior in a dedicated event table.
